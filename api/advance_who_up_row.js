@@ -1,5 +1,8 @@
-import { initializeApp } from "firebase/app";
-import { getDatabase, ref, get, update } from "firebase/database";
+// import { initializeApp } from "firebase/app";
+// import { getDatabase, ref, get, update } from "firebase/database";
+
+const { initializeApp } = require('firebase/app');
+const { getDatabase, ref, get, update } = require('firebase/database');
 
 // Replace with your Firebase project's config
 const firebaseConfig = {
@@ -73,7 +76,7 @@ async function updateWhoIsUpNext() {
     }
 }
 
-// exports.updateWhoIsUpNext = updateWhoIsUpNext
+exports.updateWhoIsUpNext = updateWhoIsUpNext
 
-// new ES module syntax to export functions
-export { updateWhoIsUpNext };
+// // new ES module syntax to export functions
+// export { updateWhoIsUpNext };
