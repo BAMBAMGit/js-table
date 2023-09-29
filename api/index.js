@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 // Reference the API endpoint code
 const advance_who_up_row_functions = require('./advance_who_up_row.js');
 
-// make the API (GET)
+// make the API (GET)    --> remember to make a vercel.json file to help with routing, otherwise you'll get a 404 file not found error
 app.get('/advance_who_up_row', async (req, res) => {
   try {
 
