@@ -48,9 +48,6 @@ async function get_database() {
     }
   }
 
-exports.get_database = get_database
-
-
 async function updateWhoIsUpNext() {
     try {
       // Call get_database to retrieve the data
@@ -95,7 +92,9 @@ async function updateWhoIsUpNext() {
     }
 }
 
-exports.updateWhoIsUpNext = updateWhoIsUpNext
+// exports.updateWhoIsUpNext = updateWhoIsUpNext
+// Export the async function as the default export
+module.exports = updateWhoIsUpNext;
 
 //   // handle the click by awaiting the data, then writing the data to the table
 //   async function handleClick() {
