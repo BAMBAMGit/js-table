@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Assignment Sheet</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="./styles.css">
+
+</head>
+<body onload="construct_table()">
+
+    <button class="rounded-button" onclick="advance_hour()">advance hour</button>
+    <!-- <button class="button-10" onclick="clear_all_cells()">clear all</button> -->
+    <input type="text" class="assign_pt_input">
+    <button id="assign_pt_button" class="rounded-button">Assign patient</button>
+    <input type="text" class="advance_doc_input">
+    <button id="advance_doc" class="rounded-button">Advance doctor</button>
+    <!-- <button class="button-10" id="export_button">Export to JSON</button>
+    <button class="button-10" id="import_button">Import from CSV</button> -->
+    <button id="upload_to_firebase_button" class="rounded-button">Update Content</button>  <!-- style="display: none;"  hidden button that updates firebase-->
+    <span id="clock"></span>
+
+  <table id="myTable">
+    <thead>
+      <tr>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+
+
+      <!-- <script src="clear_all_cells.js"></script> -->
+      <script src="./today_date_string.js"></script>
+      <script src="./construct_table.js"></script>
+      <script src="./clock.js"></script>
+      <script src="./highlight_row.js"></script>
+      <script src="./advance_doc.js"></script>
+      <script src="./assign_pt.js"></script>
+      <script src="./listeners_text_fields.js"></script>
+      <script src="./advance_hour.js"></script>
+      <!-- <script src="./reconstruct_table_at_6am_script.js"></script> -->
+      <script src="./get_docs_from_amion.js"></script>
+      <!-- <script src="./async_timers.js"></script> -->
+      <!-- <script type="module" src="./import_from_firebase_on_load.js"></script> -->
+      <script src="./write_data_to_table.js"></script>
+      <script src="./doctor_view/highlight_next_up_doctor.js"></script>
+      <script src="./extract_table_to_obj.js"></script>
+      <script type="module" src="./upload_to_firebase.js"></script>
+      <script type="module" src="doctor_view/import_from_firebase_realtime.js"></script>
+      <script type="module" src="./listener_changes_to_myTable.js"></script>
+
+
+    </tbody>
+  </table>
+</body>
+</html>

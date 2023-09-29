@@ -1,0 +1,15 @@
+{
+  "name": "js_table",
+  "version": "1.0.0",
+  "description": "assignment sheet",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "node api/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
