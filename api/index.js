@@ -14,14 +14,14 @@ app.get('/', (req, res) => {
 
 
 // Reference the API endpoint code
-const updateWhoIsUpNext = require('./advance_who_up_row.js');
+const advance_who_up_row_functions = require('./advance_who_up_row.js');
 
 // make the API (GET)
-app.get('/api/advance_who_up_row', async (req, res) => {
+app.get('/advance_who_up_row', async (req, res) => {
   try {
 
     // Call your function
-    const result = await updateWhoIsUpNext();
+    const result = await advance_who_up_row_functions.updateWhoIsUpNext();
 
     // Send the result as JSON response
     res.json({ result });

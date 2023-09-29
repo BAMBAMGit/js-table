@@ -1,5 +1,5 @@
 const { initializeApp } = require("firebase/app");
-const { getDatabase, ref, set, get, update } = require("firebase/database");
+const { getDatabase, ref, get, update } = require("firebase/database");
 
 // Replace with your Firebase project's config
 const firebaseConfig = {
@@ -60,27 +60,8 @@ async function updateWhoIsUpNext() {
         console.log('parsedObject')
         console.log(parsedObject)
   
+        // update the who_up_next_hour data to firebase (use update instead of set, set will replace entire existing data with new data)
         await update(dataRef, parsedObject)
-        // // Loop through the key-value pairs and update Firebase
-        // for (const key in parsedObject) {
-        //     console.log('key')
-        //     console.log(key)
-            
-        //     if (parsedObject.hasOwnProperty(key)) {
-
-        //         const value = parsedObject[key];
-        //         console.log('value')
-        //         console.log(value)
-    
-        //         // Create an object to update the specific key in Firebase
-        //         const updateObject = {key,value};
-    
-        //         // Update Firebase using the updateObject
-        //         await update(dataRef, updateObject);
-    
-        //         console.log(`Updated ${key} with value ${value} in Firebase.`);
-        //     }
-        // }
 
         return parsedObject
 
@@ -92,27 +73,4 @@ async function updateWhoIsUpNext() {
     }
 }
 
-// exports.updateWhoIsUpNext = updateWhoIsUpNext
-// Export the async function as the default export
-module.exports = updateWhoIsUpNext;
-
-//   // handle the click by awaiting the data, then writing the data to the table
-//   async function handleClick() {
-//     try {
-//         const result = await get_database();
-//         console.log("Data called upon by handleClick function:", result);
-
-//         write_data_to_table_function (result)
-        
-
-//     } catch (error) {
-//         console.error("An error occurred:", error);
-//     }
-//   }
-  
-
-// // Get the button element by its id
-// const button = document.getElementById('myButton');
-
-// // Attach the function to the button's click event
-// button.addEventListener('click', handleClick);
+exports.updateWhoIsUpNext = updateWhoIsUpNext
