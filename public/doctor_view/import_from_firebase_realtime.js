@@ -34,10 +34,10 @@ const dateString = `${year}-${month}-${day}`;
 const dataRef = ref(database, dateString);
 
 // Listen for changes in the data
-function write_data_table_changes_in_realtime () {
+async function write_data_table_changes_in_realtime () {
 
-    onValue(dataRef, (snapshot) => {
-        const data = snapshot.val();
+    onValue(dataRef, async (snapshot) => {
+        const data = await snapshot.val();
         console.log("Retrieved data from OnValue (realtime updates):", data);
 
         // write imported data from firebase to my table
