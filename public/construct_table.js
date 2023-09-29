@@ -166,17 +166,16 @@ function construct_table(){
 
       // resolve the promise
       .then( () => {resolve()} )
-      
+
       .catch(error => console.error("Error fetching JSON data:", error));
 
   });
 
 }
 
-window.onload = function () {
-  construct_table().then( () => {
-    highlight_row_for_current_hour();
-  });
+window.onload = async function () {
+  await construct_table()
+  await highlight_row_for_current_hour()
 };
 
 function delete_data(){  // this fxn is needed to delete the table before it's updated or constructed so it doesn't append repeatedly

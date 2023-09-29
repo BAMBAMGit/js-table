@@ -1,4 +1,4 @@
-function all_ids_to_key_values_pairs(){
+async function all_ids_to_key_values_pairs(){
     
     // get all id elements
     var all_id_elements = document.querySelectorAll('*[id]')
@@ -31,7 +31,7 @@ function all_ids_to_key_values_pairs(){
 
     }
 
-    // console.log(all_ids)
+    console.log(all_ids)
 
     return all_ids
 }

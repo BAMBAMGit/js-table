@@ -27,7 +27,10 @@ const dataRef = ref(database);
 
 
 // Define the function
-export function upload_to_firebase_function() {
+export async function upload_to_firebase_function() {
+
+    // make sure that the next hour's data is calculated before extracting element ids key:value pairs and uploading to firebase
+    await calculate_advance_hour_and_store_in_div_data()
 
     // Create datestring for foldername
     const today = new Date();
@@ -37,13 +40,13 @@ export function upload_to_firebase_function() {
     const dateString = `${year}-${month}-${day}`;
 
     // reference databases and foldername
-    var dataRef_custom_key = ref(database, dateString);
+    var dataRef_custom_key = await ref(database, dateString);
 
     // get table data
-    const table_data_ = all_ids_to_key_values_pairs()
+    const table_data_ = await all_ids_to_key_values_pairs()
 
     // Write the table data to the database
-    set(dataRef_custom_key, table_data_)
+    await set(dataRef_custom_key, table_data_)
     .then(() => {
         console.log('Data was successfully pushed to the database.');
     })

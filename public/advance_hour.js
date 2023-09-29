@@ -3,7 +3,7 @@
 // then when the hour changes, a different node.js will be run and will update the who up row and next up data in firebase which will in turn update the assignment sheet
 
 
-function advance_hour() {
+async function advance_hour() {
 
     // get who_up data
     var who_up_row = document.querySelectorAll('.who_up_row');
@@ -123,7 +123,7 @@ function advance_hour() {
 
         // label first sorted cell as next up. this may be overwritten later if there are 'first patient' cells
         if (i == 0) {
-            who_up_object['next_up'] = cell__.id
+            who_up_object['next_up_data'] = cell__.id
         }
     }
 
@@ -135,7 +135,7 @@ function advance_hour() {
 
         // label 1st one as next_up
         if (i==0) {
-            who_up_object['next_up'] = cellid
+            who_up_object['next_up_data'] = cellid
         }
 
     }
@@ -157,9 +157,9 @@ function advance_hour() {
 
 // run advance_hour() to get an key:value pair object representing next hour's who up row and store it as a div-data element in the DOM.
 // once stored in the DOM, it can be easily uploaded to firebase
-function calculate_advance_hour_and_store_in_div_data () {
+async function calculate_advance_hour_and_store_in_div_data() {
 
-    const who_up_object = advance_hour()
+    const who_up_object = await advance_hour()
 
     // Serialize 'who_up_object' to a JSON string so it can be stored in div attribute
     const jsonString = JSON.stringify(who_up_object);
@@ -184,5 +184,9 @@ function calculate_advance_hour_and_store_in_div_data () {
     console.log('hihi')
     console.log(parsedObject)
     
+// NEXT UP --> make a function that can take this 'who_up_next_hour' from firebase data, parse it back into a key
+// value pair object, and then write it to the firebase doctor_value_row keys. this will then update the 
+// assignment sheet automatically! :).   Don't forget to write it to the next_up_data value too!!
+// probably need to figure out a way to make the highlighted hour bar update too....
 
 }
