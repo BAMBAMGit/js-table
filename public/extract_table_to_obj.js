@@ -17,11 +17,15 @@ function all_ids_to_key_values_pairs(){
 
         all_ids[key_] = value_
         
-        // console.log(key_, value_, typeof(value_), typeof(key_))
-        
         // special treatment is needed for element 'next_up_div'. This has 'next up' data stored in an attribute 
         if (key_ == 'next_up_data') {
             attribute_value = element_.getAttribute('data-info')
+            all_ids[key_] = attribute_value
+        }
+
+        // special treatment is needed for element 'who_up_next_hour_data'. This has data stored in an attribute 
+        if (key_ == 'who_up_next_hour') {
+            attribute_value = element_.getAttribute('data-my-object')
             all_ids[key_] = attribute_value
         }
 
