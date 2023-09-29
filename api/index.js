@@ -17,10 +17,8 @@ app.get('/', (req, res) => {
 const advance_who_up_functions = require('./advance_who_up_row.js');
 
 // make the API (GET)
-app.get('/advance_who_up_row', async (req, res) => {
+app.get('/api/advance_who_up_row', async (req, res) => {
   try {
-
-    console.log('hihi')
 
     // Call your function
     const result = await advance_who_up_functions.updateWhoIsUpNext();
