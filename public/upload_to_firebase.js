@@ -1,6 +1,8 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js";
-import { getDatabase, ref, set, push, onValue } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-database.js";
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js";
+// import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-database.js";
 
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, set } from "firebase/database";
 
 // Replace with your Firebase project's config
 const firebaseConfig = {
@@ -22,7 +24,7 @@ const database = getDatabase(app);
 
 // Reference a specific location in the database
 // const dataRef = ref(database, 'myfolder');
-const dataRef = ref(database);
+// const dataRef = ref(database);
 
 
 
