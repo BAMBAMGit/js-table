@@ -48,6 +48,8 @@ async function get_database() {
     }
   }
 
+exports.get_database = get_database
+
 
 async function updateWhoIsUpNext() {
     try {
