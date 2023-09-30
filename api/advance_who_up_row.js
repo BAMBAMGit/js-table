@@ -43,10 +43,15 @@ async function get_database() {
       if (snapshot.exists()) {
         const data = snapshot.val();
         console.log("Retrieved data from get (one-time request), stored in const: data");
-        console.log('typeof data1')
-        console.log(typeof data)
-        console.log('typeof data2')
-        return data;
+
+        console.log('data1')
+        // Convert the object to a JSON string
+        const jsonString = JSON.stringify(data);
+        console.log(jsonString); // JSON string representation of the object
+        console.log('jsonString1')
+        
+        return jsonString;
+
       } else {
         console.log("No data available");
         throw new Error("No data available");
@@ -60,19 +65,17 @@ async function get_database() {
 async function updateWhoIsUpNext() {
     try {
       // Call get_database to retrieve the data
-      const data = await get_database();
+      const jsonString = await get_database();
+      const data = JSON.parse(jsonString);
   
       // Check if 'who_up_next_hour' exists in the data
       if ('who_up_next_hour' in data) {
-        const jsonString_retrieved = data['who_up_next_hour'];
-        const parsedObject = JSON.parse(jsonString_retrieved);
-        console.log('parsedObject')
-        console.log(parsedObject)
+        const who_up_data_object = data['who_up_next_hour'];
   
         // update the who_up_next_hour data to firebase (use update instead of set, set will replace entire existing data with new data)
-        await update(dataRef, parsedObject)
+        await update(dataRef, who_up_data_object)
 
-        return jsonString_retrieved
+        return jsonString
 
       } else {
         console.log("No 'who_up_next_hour' data in the retrieved data.");
