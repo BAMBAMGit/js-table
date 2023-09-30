@@ -76,6 +76,8 @@ async function updateWhoIsUpNext() {
     }
 }
 
+updateWhoIsUpNext()
+
 exports.updateWhoIsUpNext = updateWhoIsUpNext
 
 // // new ES module syntax to export functions
