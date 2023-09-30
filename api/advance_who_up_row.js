@@ -58,19 +58,19 @@ async function updateWhoIsUpNext() {
 
       // Call get_database to retrieve the data
       const data = await get_database();
-
-      // Convert the object to a JSON string
-      const jsonString = JSON.stringify(data);
-      console.log(jsonString)
-
-      console.log(data)
   
       // Check if 'who_up_next_hour' exists in the data
       if ('who_up_next_hour' in data) {
-        const who_up_data_object = data['who_up_next_hour'];
-  
+
+        const jsonString = data['who_up_next_hour'];
+        console.log('jsonString')
+        console.log(jsonString)
+
+        // Parse the JSON string back to a JavaScript object
+        const parsedObject = JSON.parse(jsonString);
+
         // update the who_up_next_hour data to firebase (use update instead of set, set will replace entire existing data with new data)
-        await update(dataRef, who_up_data_object)
+        await update(dataRef, parsedObject)
 
         return jsonString
 
