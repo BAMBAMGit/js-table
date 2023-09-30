@@ -25,10 +25,10 @@ const database = getDatabase(app);
 // Reference a specific location in the database
 // today's date in format '2023-03-24' (string)
 const today = new Date();
-const year = today.getFullYear();
+const year = String(today.getFullYear());
 const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-based
-const day = String(today.getDate()).padStart(2, '0');
-const dateString = String(year + '-' + month + '-' + day-1);
+const day = String(today.getDate()-1).padStart(2, '0');
+const dateString = String(year + '-' + month + '-' + day);
 console.log('dateString')
 console.log(dateString)
 const dataRef = ref(database, dateString);
