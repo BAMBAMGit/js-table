@@ -31,11 +31,7 @@ const day = String(today.getDate()).padStart(2, '0');
 const dateString = String(`${year}-${month}-${day}`);
 
 // const dataRef = ref(database, dateString);
-const dataRef = ref(database);
-
-const x = get(dataRef)
-console.log('get dataRef')
-console.log(x)
+const dataRef = ref(database, '2023-09-29');
 
 async function get_database() {
     try {
