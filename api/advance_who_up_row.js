@@ -85,9 +85,9 @@ const app_express = express();
 app_express.get('/advance_who_up_row', async (req, res) => {
 
   // // Your logic to handle the request here
-  // const updated_who_up_row = await updateWhoIsUpNext();
+  const parsedObject = await updateWhoIsUpNext();
 
-  res.json({ message: 'Handling GET request to /advance_who_up_row' });
+  res.json({ message: 'Handling GET request to /advance_who_up_row: ' + parsedObject });
   // res.json({ message: updated_who_up_row });
 
 });
