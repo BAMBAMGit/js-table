@@ -36,17 +36,12 @@ const dataRef = ref(database, '2023-09-29');
 async function get_database() {
     try {
       const snapshot = await get(dataRef);
-      if (snapshot.exists()) {
-        const data = snapshot.val();
-        console.log("Retrieved data from get (one-time request), stored in const: data");
 
-        console.log('data1')
-        // Convert the object to a JSON string
-        const jsonString = JSON.stringify(data);
-        console.log(jsonString); // JSON string representation of the object
-        console.log('jsonString1')
-        
-        return jsonString;
+      if (snapshot.exists()) {
+
+        const data = snapshot.val();
+        console.log("Retrieved data from get (one-time request), stored in const: data");        
+        return data;
 
       } else {
         console.log("No data available");
@@ -60,9 +55,15 @@ async function get_database() {
 
 async function updateWhoIsUpNext() {
     try {
+
       // Call get_database to retrieve the data
-      const jsonString = await get_database();
-      const data = JSON.parse(jsonString);
+      const data = await get_database();
+
+      // Convert the object to a JSON string
+      const jsonString = JSON.stringify(data);
+      console.log(jsonString)
+
+      console.log(data)
   
       // Check if 'who_up_next_hour' exists in the data
       if ('who_up_next_hour' in data) {
