@@ -30,8 +30,8 @@ const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-bas
 const day = String(today.getDate()).padStart(2, '0');
 const dateString = String(`${year}-${month}-${day}`);
 
-const dataRef = ref(database, dateString);
-// const dataRef = ref(database);
+// const dataRef = ref(database, dateString);
+const dataRef = ref(database);
 
 const x = get(dataRef)
 console.log('get dataRef')
@@ -39,17 +39,13 @@ console.log(x)
 
 async function get_database() {
     try {
-      console.log('hihi')
-      console.log(dateString)
       const snapshot = await get(dataRef);
-      console.log('snapshot')
-      console.log(snapshot)
-      console.log('snapshotval')
-      console.log(snapshot.val())
-  
       if (snapshot.exists()) {
         const data = snapshot.val();
         console.log("Retrieved data from get (one-time request), stored in const: data");
+        for (x of data) {
+          console.log(x)
+        }
         return data;
       } else {
         console.log("No data available");
