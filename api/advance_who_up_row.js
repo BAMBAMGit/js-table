@@ -43,7 +43,9 @@ async function get_database() {
       if (snapshot.exists()) {
         const data = snapshot.val();
         console.log("Retrieved data from get (one-time request), stored in const: data");
+        console.log('typeof data1')
         console.log(typeof data)
+        console.log('typeof data2')
         return data;
       } else {
         console.log("No data available");
