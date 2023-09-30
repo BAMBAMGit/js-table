@@ -35,6 +35,7 @@ const dataRef = ref(database, dateString);
 
 async function get_database() {
     try {
+      console.log('hihi')
       const snapshot = await get(dataRef);
   
       if (snapshot.exists()) {
