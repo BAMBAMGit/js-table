@@ -15,7 +15,6 @@ const firebaseConfig = {
     measurementId: "G-PLCQPB986R"
 };
 
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
@@ -78,29 +77,28 @@ async function updateWhoIsUpNext() {
     }
 }
 
+exports.updateWhoIsUpNext = updateWhoIsUpNext
 
-// Import necessary dependencies
-const express = require('express');
-const app_express = express();
+// // Import necessary dependencies
+// const express = require('express');
+// const app_express = express();
 
-// Define a route to handle GET requests to /advance_who_up_row
-// if it's not the index.js file:
-//    remember to make a vercel.json file to help with routing, otherwise you'll get a 404 file not found error
-app_express.get('/advance_who_up_row', async (req, res) => {
 
-  // // Your logic to handle the request here
-  const parsedObject = await updateWhoIsUpNext();
+// // Define a route to handle GET requests to /advance_who_up_row
+// // if it's not the index.js file:
+// //    remember to make a vercel.json file to help with routing, otherwise you'll get a 404 file not found error
+// app_express.get('/advance_who_up_row', async (req, res) => {
 
-  res.json({ message: 'Handling GET request to /advance_who_up_row: ' + parsedObject });
-  // res.json({ message: updated_who_up_row });
+//   const parsedObject = await updateWhoIsUpNext();
+//   res.json({ message: 'Handling GET request to /advance_who_up_row: ' + parsedObject });
 
-});
+// });
 
-// Start the Express server
-const port = process.env.PORT || 3000;
-app_express.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
-});
+// // Start the Express server
+// const port = process.env.PORT || 3000;
+// app_express.listen(port, () => {
+//   console.log(`Server is listening on port ${port}`);
+// });
 
 
 

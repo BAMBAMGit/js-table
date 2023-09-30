@@ -2,7 +2,7 @@
     "routes": [
       {
         "src": "/advance_who_up_row",
-        "dest": "api/advance_who_up_row.js"
+        "dest": "api/index.js"
       }
     ]
 }
