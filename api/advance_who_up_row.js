@@ -68,6 +68,8 @@ async function updateWhoIsUpNext() {
 
         // Parse the JSON string back to a JavaScript object
         const parsedObject = JSON.parse(jsonString);
+        console.log('parsedObject')
+        console.log(parsedObject)
 
         // update the who_up_next_hour data to firebase (use update instead of set, set will replace entire existing data with new data)
         await update(dataRef, parsedObject)
