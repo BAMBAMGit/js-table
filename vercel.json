@@ -12,7 +12,7 @@
         "dest": "/api/advance_who_up_row.js"
       },
       { 
-        "src": "/index", 
+        "src": "/", 
         "dest": "/api/index.js" 
       },      
       { 
