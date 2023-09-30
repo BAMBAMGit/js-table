@@ -4,6 +4,7 @@
 const { initializeApp } = require('firebase/app');
 const { getDatabase, ref, get, update } = require('firebase/database');
 
+
 // Replace with your Firebase project's config
 const firebaseConfig = {
     apiKey: "AIzaSyDyVbPfBCRArRgbYphKKCTz1Nct9ioiOsY",
@@ -31,12 +32,17 @@ const dateString = `${year}-${month}-${day}`;
 
 const dataRef = ref(database, dateString);
 
+const x = get(dataRef)
+console.log('get dataRef')
+console.log(x)
 
 async function get_database() {
     try {
       console.log('hihi')
       console.log(dateString)
       const snapshot = await get(dataRef);
+      console.log('snapshot')
+      console.log(snapshot)
   
       if (snapshot.exists()) {
         const data = snapshot.val();
