@@ -28,10 +28,10 @@ const today = new Date();
 const year = today.getFullYear();
 const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-based
 const day = String(today.getDate()).padStart(2, '0');
-const dateString = `${year}-${month}-${day}`;
+const dateString = String(`${year}-${month}-${day}`);
 
-// const dataRef = ref(database, dateString);
-const dataRef = ref(database);
+const dataRef = ref(database, dateString);
+// const dataRef = ref(database);
 
 const x = get(dataRef)
 console.log('get dataRef')
