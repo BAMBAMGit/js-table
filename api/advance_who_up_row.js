@@ -43,6 +43,8 @@ async function get_database() {
       const snapshot = await get(dataRef);
       console.log('snapshot')
       console.log(snapshot)
+      console.log('snapshotval')
+      console.log(snapshot.val())
   
       if (snapshot.exists()) {
         const data = snapshot.val();
