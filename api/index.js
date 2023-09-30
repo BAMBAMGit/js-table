@@ -33,21 +33,21 @@ const advance_who_up_row_functions = require('./advance_who_up_row.js');
 // import { updateWhoIsUpNext } from './advance_who_up_row.js';
 
 
-// make the API (GET)    --> remember to make a vercel.json file to help with routing, otherwise you'll get a 404 file not found error
-app.get('/advance_who_up_row', async (req, res) => {
-  try {
+// // make the API (GET)    --> remember to make a vercel.json file to help with routing, otherwise you'll get a 404 file not found error
+// app.get('/advance_who_up_row', async (req, res) => {
+//   try {
 
-    // Call your function
-    const result = await advance_who_up_row_functions.updateWhoIsUpNext();
+//     // Call your function
+//     const result = await advance_who_up_row_functions.updateWhoIsUpNext();
 
-    // Send the result as JSON response
-    res.json({ result });
+//     // Send the result as JSON response
+//     res.json({ result });
 
-  } catch (error) {
-    console.error('Error in running the API to check firebase and sell accordingly:', error.message);
-  }
+//   } catch (error) {
+//     console.error('Error in running the API to check firebase and sell accordingly:', error.message);
+//   }
 
-});
+// });
 
 
 app.listen(port, () => {

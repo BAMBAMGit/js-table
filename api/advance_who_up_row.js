@@ -76,9 +76,34 @@ async function updateWhoIsUpNext() {
     }
 }
 
-updateWhoIsUpNext()
 
-exports.updateWhoIsUpNext = updateWhoIsUpNext
+// Import necessary dependencies
+const express = require('express');
+const app_express = express();
+
+// Define a route to handle GET requests to /advance_who_up_row
+app_express.get('/advance_who_up_row', async (req, res) => {
+
+  // Your logic to handle the request here
+  const updated_who_up_row = await updateWhoIsUpNext();
+
+  res.json({ message: 'Handling GET request to /advance_who_up_row' });
+  res.json({ message: updated_who_up_row });
+
+});
+
+// Start the Express server
+const port = process.env.PORT || 3000;
+app_express.listen(port, () => {
+  console.log(`Server is listening on port ${port}`);
+});
+
+
+
+
+// updateWhoIsUpNext()
+
+// exports.updateWhoIsUpNext = updateWhoIsUpNext
 
 // // new ES module syntax to export functions
 // export { updateWhoIsUpNext };
