@@ -36,6 +36,7 @@ const dataRef = ref(database, dateString);
 async function get_database() {
     try {
       console.log('hihi')
+      console.log(dateString)
       const snapshot = await get(dataRef);
   
       if (snapshot.exists()) {
@@ -67,7 +68,7 @@ async function updateWhoIsUpNext() {
         // update the who_up_next_hour data to firebase (use update instead of set, set will replace entire existing data with new data)
         await update(dataRef, parsedObject)
 
-        return parsedObject
+        return jsonString_retrieved
 
       } else {
         console.log("No 'who_up_next_hour' data in the retrieved data.");
