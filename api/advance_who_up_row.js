@@ -30,7 +30,8 @@ const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-bas
 const day = String(today.getDate()).padStart(2, '0');
 const dateString = `${year}-${month}-${day}`;
 
-const dataRef = ref(database, dateString);
+// const dataRef = ref(database, dateString);
+const dataRef = ref(database);
 
 const x = get(dataRef)
 console.log('get dataRef')
