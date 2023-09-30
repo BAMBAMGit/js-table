@@ -27,7 +27,7 @@ app.get('/api/', (req, res) => {
 
 
 // Reference the API endpoint code
-const advance_who_up_row_functions = require('./advance_who_up_row.js');
+// const advance_who_up_row_functions = require('./advance_who_up_row.js');
 
 // // ES module syntax
 // import { updateWhoIsUpNext } from './advance_who_up_row.js';

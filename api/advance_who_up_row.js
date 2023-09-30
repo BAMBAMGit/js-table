@@ -82,6 +82,8 @@ const express = require('express');
 const app_express = express();
 
 // Define a route to handle GET requests to /advance_who_up_row
+// if it's not the index.js file:
+//    remember to make a vercel.json file to help with routing, otherwise you'll get a 404 file not found error
 app_express.get('/advance_who_up_row', async (req, res) => {
 
   // // Your logic to handle the request here
