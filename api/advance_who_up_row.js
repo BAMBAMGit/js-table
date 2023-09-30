@@ -24,13 +24,19 @@ const database = getDatabase(app);
 
 // Reference a specific location in the database
 // today's date in format '2023-03-24' (string)
-const today = new Date();
-const year = String(today.getFullYear());
-const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-based
-const day = String(today.getDate()-1).padStart(2, '0');
+const today = new Date();  // this will  be in UTC by default, and VERCEL makes it UTC.
+
+// Specify the desired time zone
+const losAngelesTimeOptions = { timeZone: 'America/Los_Angeles' };
+// Convert the date to Los Angeles time
+const losAngelesTime = today.toLocaleString('en-US', losAngelesTimeOptions);
+
+
+const year = String(losAngelesTime.getFullYear());
+const month = String(losAngelesTime.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+const day = String(losAngelesTime.getDate()).padStart(2, '0');
 const dateString = String(year + '-' + month + '-' + day);
-console.log('dateString')
-console.log(dateString)
+
 const dataRef = ref(database, dateString);
 // const dataRef = ref(database, '2023-09-29');  // ---> this works!!
 
