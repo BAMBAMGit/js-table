@@ -8,8 +8,16 @@
     ],
     "routes": [
       {
-        "src": "/",
-        "dest": "api/index.js"
+        "src": "/advance_who_up_row",
+        "dest": "/api/advance_who_up_row.js"
+      },
+      { 
+        "src": "/index", 
+        "dest": "/api/index.js" 
+      },      
+      { 
+        "src": "/doctor", 
+        "dest": "/public/doctor_view.html" 
       }
     ]
 }
