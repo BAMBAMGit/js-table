@@ -20,7 +20,7 @@ const port = 3000;
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // Define a route to serve the HTML file
-app.get('/', (req, res) => {
+app.get('/api/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 
