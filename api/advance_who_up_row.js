@@ -1,3 +1,6 @@
+// This is to be run every hour at start of the hour
+
+
 // import { initializeApp } from "firebase/app";
 // import { getDatabase, ref, get, update } from "firebase/database";
 
