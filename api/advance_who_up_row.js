@@ -42,15 +42,13 @@ const losAngelesDateTime = currentDateTimeUTC.setZone('America/Los_Angeles');
 console.log("Current Date/Time (Local):", currentDateTimeLocal.toString());
 console.log("Current Date/Time (UTC):", currentDateTimeUTC.toString());
 console.log("Los Angeles Date/Time:", losAngelesDateTime.toString());
-
-const today = losAngelesDateTime.toJSDate()
-console.log('Los Angeles Time:', losAngelesDateTime);
+console.log('losAngelesDateTime', losAngelesDateTime);
 
 
-const year = String(today.getFullYear());
-const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-based
-const day = String(today.getDate()).padStart(2, '0');
-const dateString = String(year + '-' + month + '-' + day);
+const year = String(losAngelesDateTime['c']['year']);
+const month = String(losAngelesDateTime['c']['month']).padStart(2, '0'); // Months are 0-based
+const day = String(losAngelesDateTime['c']['day']).padStart(2, '0');
+const dateString = year + '-' + month + '-' + day;
 
 console.log('dateString', dateString);
 
