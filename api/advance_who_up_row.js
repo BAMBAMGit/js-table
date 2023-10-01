@@ -30,10 +30,22 @@ const database = getDatabase(app);
 // use luxon to account for timezones (instead of new Date())
 const { DateTime } = require('luxon');
 
-// Create a DateTime object representing the current date and time in Los Angeles time zone
-const losAngelesTime = DateTime.now().setZone('America/Los_Angeles');
-const today = losAngelesTime.toJSDate()
-console.log('Los Angeles Time:', today);
+// Get the current DateTime in your local timezone
+const currentDateTimeLocal = DateTime.now();
+
+// Convert the current DateTime to UTC
+const currentDateTimeUTC = currentDateTimeLocal.toUTC();
+
+// Set the timezone to Los Angeles (Pacific Time)
+const losAngelesDateTime = currentDateTimeUTC.setZone('America/Los_Angeles');
+
+console.log("Current Date/Time (Local):", currentDateTimeLocal.toString());
+console.log("Current Date/Time (UTC):", currentDateTimeUTC.toString());
+console.log("Los Angeles Date/Time:", losAngelesDateTime.toString());
+
+const today = losAngelesDateTime.toJSDate()
+console.log('Los Angeles Time:', losAngelesDateTime);
+
 
 const year = String(today.getFullYear());
 const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-based
