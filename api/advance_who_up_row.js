@@ -22,20 +22,22 @@ const app = initializeApp(firebaseConfig);
 // Get a reference to the database
 const database = getDatabase(app);
 
-// Reference a specific location in the database
-// today's date in format '2023-03-24' (string)
-const today = new Date();  // this will  be in UTC by default, and VERCEL makes it UTC.
+// Reference a specific location in the database -- today's date in format '2023-03-24' (string)
 
-// Specify the desired time zone
-const losAngelesTimeOptions = { timeZone: 'America/Los_Angeles' };
-// Convert the date to Los Angeles time
-const losAngelesTime = today.toLocaleString('en-US', losAngelesTimeOptions);
+// use luxon to account for timezones (instead of new Date())
+const { DateTime } = require('luxon');
 
+// Create a DateTime object representing the current date and time in Los Angeles time zone
+const losAngelesTime = DateTime.now().setZone('America/Los_Angeles');
+const today = losAngelesTime.toJSDate()
+console.log('Los Angeles Time:', today);
 
-const year = String(losAngelesTime.getFullYear());
-const month = String(losAngelesTime.getMonth() + 1).padStart(2, '0'); // Months are 0-based
-const day = String(losAngelesTime.getDate()).padStart(2, '0');
+const year = String(today.getFullYear());
+const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+const day = String(today.getDate()).padStart(2, '0');
 const dateString = String(year + '-' + month + '-' + day);
+
+console.log('dateString', dateString);
 
 const dataRef = ref(database, dateString);
 // const dataRef = ref(database, '2023-09-29');  // ---> this works!!

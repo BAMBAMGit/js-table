@@ -89,6 +89,9 @@ function write_data_to_table_function (result) {
                                 }
                             }
 
+                            // assign value_ to the merged text node
+                            mergedTextNode.textContent = value_
+
                             // Append the merged text node back to 'element_'
                             element_.appendChild(mergedTextNode);
 
