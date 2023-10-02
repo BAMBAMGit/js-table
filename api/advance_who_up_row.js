@@ -56,8 +56,10 @@ const dataRef_prev = ref(database, dateString_prev);
 async function get_database() {
     try {
 
+      const snapshot = await get(dataRef);
+
       // get data if it exists
-      if (await snapshot.exists()) {
+      if (snapshot.exists()) {
 
         const data = await snapshot.val();
         console.log("Retrieved data from get (one-time request), stored in const: data");        
@@ -74,7 +76,7 @@ async function get_database() {
 
           // set to today's new folder
           await set(dataRef, data)
-          
+
           return data
         
         }
