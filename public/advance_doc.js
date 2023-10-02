@@ -60,7 +60,6 @@ function advance_to_next_doc() {
                 // erase the value of input text box if doctor advances
                 document.querySelector('.advance_doc_input').value = '';
                 
-
             }
             else {}
         }

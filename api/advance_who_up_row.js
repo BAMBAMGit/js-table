@@ -1,6 +1,5 @@
 // This is to be run every hour at start of the hour
 
-
 // import { initializeApp } from "firebase/app";
 // import { getDatabase, ref, get, update } from "firebase/database";
 
@@ -26,49 +25,69 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 // Reference a specific location in the database -- today's date in format '2023-03-24' (string)
+const { DateTime } = require('luxon');  // use luxon to account for timezones (instead of new Date())
+const currentDateTimeLocal = DateTime.now();  // Get the current DateTime in your local timezone
+const currentDateTimeUTC = currentDateTimeLocal.toUTC();  // Convert the current DateTime to UTC
+const losAngelesDateTime = currentDateTimeUTC.setZone('America/Los_Angeles');  // Set the timezone to Los Angeles (Pacific Time)
 
-// use luxon to account for timezones (instead of new Date())
-const { DateTime } = require('luxon');
+// Get yesterday's dateString
+const oneDayPrevious = losAngelesDateTime.minus({ days: 1 });
+const year_prev = String(oneDayPrevious['c']['year']);
+const month_prev = String(oneDayPrevious['c']['month']).padStart(2, '0'); // Months are 0-based
+const day_prev = String(oneDayPrevious['c']['day']).padStart(2, '0');
+const dateString_prev = year_prev + '-' + month_prev + '-' + day_prev;
 
-// Get the current DateTime in your local timezone
-const currentDateTimeLocal = DateTime.now();
-
-// Convert the current DateTime to UTC
-const currentDateTimeUTC = currentDateTimeLocal.toUTC();
-
-// Set the timezone to Los Angeles (Pacific Time)
-const losAngelesDateTime = currentDateTimeUTC.setZone('America/Los_Angeles');
-
-console.log("Current Date/Time (Local):", currentDateTimeLocal.toString());
-console.log("Current Date/Time (UTC):", currentDateTimeUTC.toString());
-console.log("Los Angeles Date/Time:", losAngelesDateTime.toString());
-console.log('losAngelesDateTime', losAngelesDateTime);
-
-
+// Get today's dateString
 const year = String(losAngelesDateTime['c']['year']);
 const month = String(losAngelesDateTime['c']['month']).padStart(2, '0'); // Months are 0-based
 const day = String(losAngelesDateTime['c']['day']).padStart(2, '0');
 const dateString = year + '-' + month + '-' + day;
 
+console.log("Current Date/Time (Local):", currentDateTimeLocal.toString());
+console.log("Current Date/Time (UTC):", currentDateTimeUTC.toString());
+console.log("Los Angeles Date/Time:", losAngelesDateTime.toString());
+console.log('losAngelesDateTime', losAngelesDateTime);
 console.log('dateString', dateString);
+console.log('dateString_prev', dateString_prev);
 
 const dataRef = ref(database, dateString);
-// const dataRef = ref(database, '2023-09-29');  // ---> this works!!
+const dataRef_prev = ref(database, dateString_prev);
 
 async function get_database() {
     try {
-      const snapshot = await get(dataRef);
 
-      if (snapshot.exists()) {
+      // get data if it exists
+      if (await snapshot.exists()) {
 
-        const data = snapshot.val();
+        const data = await snapshot.val();
         console.log("Retrieved data from get (one-time request), stored in const: data");        
         return data;
 
       } else {
-        console.log("No data available");
-        throw new Error("No data available");
+
+        // if it's midnight, get yesterday's data and copy it to today's new database folder
+        if (losAngelesDateTime['c']['hour'] == 0) {
+          
+          // get yesterday's data
+          const snapshot = await get(dataRef_prev);
+          const data = await snapshot.val();
+
+          // set to today's new folder
+          await set(dataRef, data)
+          
+          return data
+        
+        }
+
+        else {
+          console.log("No data available");
+          throw new Error("No data available");
+        }
+
       }
+
+
+
     } catch (error) {
       console.error("Error retrieving data:", error);
       throw error;
